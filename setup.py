@@ -16,7 +16,7 @@ setup(
     include_package_data=True,
     test_suite='scripts',
     install_requires=[
-        'tensorflow-gpu==1.10.1',
+        'tensorflow',
         'numpy',
         'pandas',
         'Pillow',

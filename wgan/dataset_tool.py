@@ -68,11 +68,14 @@ class TFRecorder:
         def write(image_filenames, name, mode):
             full_size = len(image_filenames)
             self.my_print('writing %s as tfrecord (%s): size %i' % (self.dataset_name, mode, full_size))
-            compress_opt = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.GZIP)
-            with tf.python_io.TFRecordWriter(name, options=compress_opt) as writer:
+            compress_opt = tf.io.TFRecordOptions(tf.compat.v1.io.TFRecordCompressionType.GZIP)
+            with tf.io.TFRecordWriter(name, options=compress_opt) as writer:
+	    print("1")
                 time_stamp = time()
                 time_stamp_start = time()
+	    print("2")
                 for n, single_image_path in enumerate(image_filenames):
+	        print(f"number {n}", end="\r")
                     # open as pillow instance
                     image = Image.open(single_image_path)
                     w, h = image.size
